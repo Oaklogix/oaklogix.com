@@ -1502,33 +1502,37 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     top: 0;
     z-index: 500;
 }
-
-
-/* -------------------------------------------------------------------
+/* ------------------------------------------------------------------- 
  * ## header logo
  * ------------------------------------------------------------------- */
 .header-logo {
-    display: inline-block;
+    display: flex;                /* use flexbox to align images */
+    align-items: center;          /* vertical alignment */
+    gap: 8px;                     /* adjust spacing between tree + text */
     position: absolute;
-    margin: 0;
-    padding: 0;
     left: 40px;
     top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+    margin: 0;
+    padding: 0;
     z-index: 501;
 }
 
 .header-logo a {
-    display: block;
-    margin: 9px 0 0 0;
+    display: flex;                /* allow multiple images inside */
+    align-items: center;
+    margin: 0; 
     padding: 0;
     outline: 0;
     border: none;
-    width: 80px;
-    -webkit-transition: all 0.3s ease-in-out;
+    width: auto;                  /* remove fixed width */
     transition: all 0.3s ease-in-out;
+}
+
+.header-logo img {
+    display: block;
+    height: 100px;                 /* adjust size as needed */
+    width: auto;
 }
 
 
@@ -3588,82 +3592,98 @@ footer .row {
     color: #FFFFFF;
 }
 
-
 /* ------------------------------------------------------------------- 
- * responsive:
- * footer
+ * Responsive Footer
  * ------------------------------------------------------------------- */
-@media only screen and (max-width: 900px) {
-    .footer-main .left {
-        padding-right: 20px;
-    }
-    .footer-main .right {
-        padding-left: 20px;
-    }
-}
 
-@media only screen and (max-width: 800px) {
-    footer .row {
-        max-width: 600px;
+/* Tablet (≤900px) */
+@media only screen and (max-width: 900px) {
+    .footer-container {
+        flex-wrap: wrap;
     }
-    .footer-main .left {
+    .footer-left {
         padding-right: 15px;
-        margin-bottom: 4.2rem;
     }
-    .footer-main .right {
+    .footer-right {
         padding-left: 15px;
     }
 }
 
+/* Small Tablet (≤800px) */
+@media only screen and (max-width: 800px) {
+    footer {
+        padding: 40px 40px 20px;
+    }
+
+    .footer-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .footer-left {
+        margin-bottom: 3rem; /* stack spacing */
+    }
+}
+
+/* Mobile (≤600px) */
 @media only screen and (max-width: 600px) {
-    .footer-main .left {
-        padding-right: 10px;
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
     }
-    .footer-main .right {
-        padding-left: 10px;
+
+    .footer-left,
+    .footer-right {
+        padding: 0;
+        margin: 0 0 2rem 0;
     }
-    .footer-logo {
-        margin: -.6rem auto 3.6rem;
+
+    .footer-left h2 {
+        margin: 1rem auto;
     }
+
+    .subscribe-box {
+        flex-direction: column;
+    }
+
+    .subscribe-box input {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .subscribe-box button {
+        width: 100%;
+    }
+
     .footer-bottom {
         padding-bottom: .6rem;
     }
-    .footer-bottom .copyright span {
+
+    .footer-bottom span {
         display: block;
-    }
-    .footer-bottom .copyright span::after {
-        display: none;
-    }
-    .go-top {
-        right: 0;
-        bottom: 0;
+        margin-bottom: .3rem;
     }
 }
 
+/* Extra Small Mobile (≤500px) */
 @media only screen and (max-width: 500px) {
-    .footer-subscribe #mc-form input[type="email"] {
-        padding: 1.2rem 20px 1.2rem;
+    .subscribe-box input {
+        padding: 1.2rem 20px;
         background: rgba(0, 0, 0, 0.1);
         text-align: center;
     }
-    .footer-subscribe #mc-form input[type=submit] {
-        position: static;
+
+    .subscribe-box button {
         width: 100%;
         margin-bottom: 1.8rem;
     }
-    .footer-subscribe #mc-form label {
-        text-align: center;
-    }
 }
 
+/* Ultra Small (≤400px) */
 @media only screen and (max-width: 400px) {
-    .footer-main .left {
-        padding-right: 0;
-    }
-    .footer-main .right {
-        padding-left: 0;
+    .footer-left,
+    .footer-right {
+        margin: 0 0 1.5rem 0;
     }
 }
-
-
-/*# sourceMappingURL=main.css.map */
